@@ -16,7 +16,6 @@ class Raid extends Component {
   }
 
   componentDidMount() {
-    console.log('this is props in mount', this.props.match)
     const id = this.props.match.params.id
 
     fetch(`${apiUrl}/raids/${id}`)

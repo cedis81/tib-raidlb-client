@@ -34,7 +34,7 @@ class Raids extends Component {
 
     const raids = this.state.raids.map(raid => (
       <li key={raid.id}>
-        {raid.id} Boss: {raid.boss_name} Time Remaining: {raid.time_remaining}
+        {raid.id} Boss: <Link to={`/raids/${raid.id}`}>{raid.boss_name}</Link> Time Remaining: {raid.time_remaining}
       </li>
     ))
 

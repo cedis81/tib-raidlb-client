@@ -1,18 +1,19 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 const RaidForm = ({ handleChange, handleSubmit, raid }) => (
   <form onSubmit={handleSubmit}>
     <label>Raid Boss:</label>
     <input
       name="boss_name"
-      placeholder="My Favorite Movie"
+      placeholder="Raid boss name"
       value={raid.boss_name}
       onChange={handleChange}
     />
     <label>Time Remaining:</label>
     <input
       name="time_remaining"
-      placeholder="John Doe"
+      placeholder="Time in seconds"
       value={raid.time_remaining}
       onChange={handleChange}
     />
@@ -20,4 +21,4 @@ const RaidForm = ({ handleChange, handleSubmit, raid }) => (
   </form>
 )
 
-export default RaidForm
+export default withRouter(RaidForm)

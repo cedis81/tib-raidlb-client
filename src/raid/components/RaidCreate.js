@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
 
+import { handleErrors, createRaid } from '../api'
 import messages from '../messages'
-import apiUrl from '../../apiConfig'
 import RaidForm from './RaidForm'
 
-class Raids extends Component {
+class RaidCreate extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      notFound: false,
+      id: null,
       raid: {
         boss_name: '',
         time_remaining: ''
@@ -18,24 +18,25 @@ class Raids extends Component {
     }
   }
 
-  ComponentDidMount() {
-    console.log(apiUrl)
-    fetch(`${apiUrl}/raids`)
-      // throw error if fetch res.ok is false. fetch itself does not throw error
-      .then(console.log)
-      .then(res => res.ok ? res : new Error())
+  handleChange = event => {
+    const createdRaid = {
+      ...this.state.raid, [event.target.name]: event.target.value
+    }
+    this.setState({ raid: createdRaid })
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    console.log('this was submitteddddd')
+
+    createRaid(this.state)
+      .then(handleErrors)
       .then(res => res.json())
-      .then(data => this.setState({ raids: data.raids }))
-      // if error, set raids not found to true to redirect to home, per below
-      .catch(() => this.setState({ notFound: true }))
+      .then(data => this.setState({ id: data.raid.id }))
+      .catch(console.error)
   }
 
   render () {
-    // if (this.state.notFound) {
-    //   return <Redirect to='/' />
-    // } else if (!this.state.raids) {
-    //   return <p>loading...</p>
-    // }
 
     const { boss_name, time_remaining } = this.state.raid
 
@@ -49,4 +50,4 @@ class Raids extends Component {
   }
 }
 
-export default RaidCreate
+export default withRouter(RaidCreate)

@@ -8,18 +8,14 @@ export const handleErrors = res => {
   }
 }
 
-export const signUp = credentials => {
-  return fetch(apiUrl + '/sign-up', {
+export const createRaid = data => {
+  return fetch(apiUrl + '/raids', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      credentials: {
-        email: credentials.email,
-        password: credentials.password,
-        password_confirmation: credentials.passwordConfirmation
-      }
+      raid: data.raid
     })
   })
 }

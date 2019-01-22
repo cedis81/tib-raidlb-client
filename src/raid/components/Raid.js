@@ -11,6 +11,7 @@ class Raid extends Component {
 
     this.state = {
       notFound: null,
+      deleted: false,
       raid: null
     }
   }
@@ -27,29 +28,41 @@ class Raid extends Component {
       .catch(() => this.setState({ notFound: true }))
   }
 
+  destroy = event => {
+    const id = this.props.match.params.id
+
+    const options = {
+      method: 'DELETE'
+    }
+
+    fetch(`${apiUrl}/raids/${id}`, options)
+      .then(handleErrors)
+      .then(() => this.setState({ deleted: true }))
+      // .then(() => flash(messages.deleteRaidSuccess, 'flash-success'))
+      .catch(console.error)
+  }
+
   render () {
-    const { raid, notFound } = this.state
+    const { raid, notFound, deleted } = this.state
 
     if (notFound) {
       return <Redirect to='/' />
     } else if (!raid) {
       return <p>loading...</p>
+    } else if (deleted) {
+      return (
+        <Redirect to={{
+          pathname: '/raids'
+        }} />
+      )
     }
-    // else if (deleted) {
-    //   return (
-    //     <Redirect to={{
-    //       pathname: '/',
-    //       state: { message: 'Movie successfully deleted' }
-    //     }} />
-    //   )
-    // }
     const { boss_name, time_remaining } = raid
 
     return (
       <React.Fragment>
         <h4>{boss_name}</h4>
         <p>Time Remaining: {time_remaining}</p>
-        <button>Delete</button>
+        <button onClick={this.destroy}>Delete</button>
         <button>Edit</button>
       </React.Fragment>
     )

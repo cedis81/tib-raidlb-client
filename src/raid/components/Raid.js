@@ -56,14 +56,16 @@ class Raid extends Component {
         }} />
       )
     }
-    const { boss_name, time_remaining } = raid
+    const { id, boss_name, time_remaining } = raid
 
     return (
       <React.Fragment>
         <h4>{boss_name}</h4>
         <p>Time Remaining: {time_remaining}</p>
         <button onClick={this.destroy}>Delete</button>
-        <button>Edit</button>
+        <button>
+          <Link to={`/raids/${id}/update`}>Edit</Link>
+        </button>
       </React.Fragment>
     )
   }

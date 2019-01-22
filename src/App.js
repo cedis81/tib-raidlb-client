@@ -11,6 +11,7 @@ import ChangePassword from './auth/components/ChangePassword'
 import Raids from './raid/components/Raids'
 import RaidCreate from './raid/components/RaidCreate'
 import Raid from './raid/components/Raid'
+import RaidUpdate from './raid/components/RaidUpdate'
 
 class App extends Component {
   constructor () {
@@ -65,6 +66,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/raids/:id' render={() => (
             <Raid flash={this.flash} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/raids/:id/update' render={() => (
+            <RaidUpdate flash={this.flash} user={user} />
           )} />
         </main>
       </React.Fragment>

@@ -20,24 +20,22 @@ export const createRaid = data => {
   })
 }
 
-export const signIn = credentials => {
-  return fetch(apiUrl + '/sign-in', {
-    method: 'POST',
+export const updateRaid = data => {
+  console.log(data)
+  return fetch(apiUrl + '/raids/' + data.raid.id, {
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      credentials: {
-        email: credentials.email,
-        password: credentials.password,
-      }
+      raid: data.raid
     })
   })
 }
 
-export const signOut = user => {
-  return fetch(apiUrl + '/sign-out', {
-    method: 'DELETE',
+export const showRaid = data => {
+  return fetch(apiUrl + '/raids' + `${data.id}`, {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       'Authorization':`Token token=${user.token}`

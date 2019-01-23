@@ -9,6 +9,7 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import Raids from './raid/components/Raids'
+import MyRaids from './raid/components/MyRaids'
 import RaidCreate from './raid/components/RaidCreate'
 import Raid from './raid/components/Raid'
 import RaidUpdate from './raid/components/RaidUpdate'
@@ -60,6 +61,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/raids' render={() => (
             <Raids flash={this.flash} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/my-raids' render={() => (
+            <MyRaids flash={this.flash} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/raid-create' render={() => (
             <RaidCreate flash={this.flash} user={user} />

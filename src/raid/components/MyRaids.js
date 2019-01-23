@@ -4,11 +4,13 @@ import { withRouter, Link, Redirect } from 'react-router-dom'
 import messages from '../messages'
 import apiUrl from '../../apiConfig'
 
-class Raids extends Component {
+class MyRaids extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
+      user_id: this.props.user.id,
+      user_name: this.props.user.email,
       raids: null
     }
   }
@@ -32,19 +34,20 @@ class Raids extends Component {
     if (!this.state.raids) {
       return <p>loading...</p>
     }
-    const raids = this.state.raids.map(raid => (
-      <li key={raid.id}>
-        Raid ID: {raid.id} User: {raid.user.email} Boss: <Link to={`/raids/${raid.id}`}>{raid.boss_name}</Link> Time Remaining: {raid.time_remaining}
-      </li>
-    ))
+    const raids = this.state.raids.map(raid => {
+      if (this.state.user_id === raid.user.id) {
+        return <li key={raid.id}>
+          Raid ID: {raid.id} User: {raid.user.email} Boss: <Link to={`/raids/${raid.id}`}>{raid.boss_name}</Link> Time Remaining: {raid.time_remaining}
+        </li>
+      }})
 
     return (
       <React.Fragment>
-        <h1>Raids:</h1>
+        <h1>Raids belonging to {this.state.user_name}:</h1>
         <p>{raids}</p>
       </React.Fragment>
     )
   }
 }
 
-export default Raids
+export default MyRaids

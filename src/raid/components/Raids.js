@@ -40,7 +40,7 @@ class Raids extends Component {
 
     return (
       <React.Fragment>
-        <h4>Raids:</h4>
+        <h1>Raids:</h1>
         <p>{raids}</p>
       </React.Fragment>
     )

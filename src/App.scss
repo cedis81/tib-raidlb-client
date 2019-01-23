@@ -46,3 +46,21 @@ $charcoal: #ccc;
     max-width: 200px;
   }
 }
+
+body {
+  background-color: #000000;
+  color: #bcbcbc;
+}
+
+
+a:link, a:visited {
+  color: #ffffff;
+}
+
+a:hover, a:active {
+  color: #fedc00;
+}
+
+h1 {
+  color: #fedc00;
+}

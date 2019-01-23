@@ -60,7 +60,7 @@ class Raid extends Component {
 
     return (
       <React.Fragment>
-        <h4>{boss_name}</h4>
+        <h1>{boss_name}</h1>
         <p>Time Remaining: {time_remaining}</p>
         <button onClick={this.destroy}>Delete</button>
         <button>

@@ -21,7 +21,6 @@ export const createRaid = data => {
 }
 
 export const updateRaid = data => {
-  console.log(data)
   return fetch(apiUrl + '/raids/' + data.raid.id, {
     method: 'PATCH',
     headers: {

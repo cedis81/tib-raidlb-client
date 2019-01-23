@@ -43,7 +43,6 @@ class RaidUpdate extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    console.log('this was submitteddddd')
 
     updateRaid(this.state)
       .then(handleErrors)

@@ -27,7 +27,6 @@ class RaidCreate extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    console.log('this was submitteddddd')
 
     createRaid(this.state)
       .then(handleErrors)

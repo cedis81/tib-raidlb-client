@@ -1,5 +1,5 @@
 export default {
-  // signUpSuccess: 'Succesfully registered! You\'ve been signed in as well.',
+  deleteRaidSuccess: 'Raid successfully deleted.',
   // signUpFailure: 'Registration failed. Email may be taked, or passwords don\'t'
   //                 + ' match.',
   // signInSuccess: 'Welcome!',

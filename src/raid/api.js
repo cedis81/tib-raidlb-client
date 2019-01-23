@@ -21,11 +21,12 @@ export const createRaid = (data, user) => {
   })
 }
 
-export const updateRaid = data => {
+export const updateRaid = (data, user) => {
   return fetch(apiUrl + '/raids/' + data.raid.id, {
     method: 'PATCH',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization':`Token token=${user.token}`
     },
     body: JSON.stringify({
       raid: data.raid

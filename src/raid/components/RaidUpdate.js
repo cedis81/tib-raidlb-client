@@ -44,7 +44,7 @@ class RaidUpdate extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    updateRaid(this.state)
+    updateRaid(this.state, this.props.user)
       .then(handleErrors)
       .then(res => res.json())
       .then(data => this.setState({ updated: true }))

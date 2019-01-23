@@ -32,7 +32,11 @@ class Raid extends Component {
     const id = this.props.match.params.id
 
     const options = {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization':`Token token=${this.props.user.token}`
+      }
     }
 
     fetch(`${apiUrl}/raids/${id}`, options)

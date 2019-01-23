@@ -8,11 +8,12 @@ export const handleErrors = res => {
   }
 }
 
-export const createRaid = data => {
+export const createRaid = (data, user) => {
   return fetch(apiUrl + '/raids', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization':`Token token=${user.token}`
     },
     body: JSON.stringify({
       raid: data.raid

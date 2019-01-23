@@ -28,7 +28,8 @@ class RaidCreate extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    createRaid(this.state)
+    createRaid(this.state, this.props.user)
+      .then(console.log())
       .then(handleErrors)
       .then(res => res.json())
       .then(data => this.setState({ id: data.raid.id }))
@@ -36,6 +37,11 @@ class RaidCreate extends Component {
   }
 
   render () {
+    const { id } = this.state
+
+    if (id) {
+      return <Redirect to={`/raids/${id}`} />
+    }
 
     const { boss_name, time_remaining } = this.state.raid
 

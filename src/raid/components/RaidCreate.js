@@ -29,7 +29,6 @@ class RaidCreate extends Component {
     event.preventDefault()
 
     createRaid(this.state, this.props.user)
-      .then(console.log())
       .then(handleErrors)
       .then(res => res.json())
       .then(data => this.setState({ id: data.raid.id }))

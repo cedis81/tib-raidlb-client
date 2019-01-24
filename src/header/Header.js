@@ -6,10 +6,10 @@ import logo from '../tib_logo.png'
 
 const authenticatedOptions = (
   <React.Fragment>
+    <Link to="/raids">Raids</Link>
+    <Link to="/my-raids">My Raids</Link>
     <Link to="/change-password">Change Password</Link>
     <Link to="/sign-out">Sign Out</Link>
-    <Link to="/raids">Raids</Link>
-    <Link to="/">Home</Link>
   </React.Fragment>
 )
 
@@ -28,7 +28,7 @@ const unauthenticatedOptions = (
 
 const Header = ({ user }) => (
   <header className="main-header">
-    <img src={logo} alt="Logo"/>
+    <Link to="/"><img src={logo} alt="Logo"/></Link>
     <nav>
       { user && <span>Welcome, {user.email}</span>}
       { user ? authenticatedOptions : unauthenticatedOptions }

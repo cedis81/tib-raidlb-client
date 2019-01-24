@@ -3,18 +3,19 @@ import { withRouter, Link, Redirect } from 'react-router-dom'
 
 import messages from '../messages'
 import apiUrl from '../../apiConfig'
+import RaidCreate from './RaidCreate'
 
 class MyRaids extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
+      createIsHidden: true,
       user_id: this.props.user.id,
       user_name: this.props.user.email,
       raids: null
     }
   }
-
 
   componentDidMount() {
     fetch(`${apiUrl}/raids`)
@@ -24,6 +25,12 @@ class MyRaids extends Component {
       .then(res => res.json())
       .then(data => this.setState({ raids: data.raids }))
       .catch(console.error)
+  }
+
+  toggleHidden () {
+    this.setState({
+      createIsHidden: !this.state.createIsHidden
+    })
   }
 
   render () {
@@ -43,6 +50,10 @@ class MyRaids extends Component {
     return (
       <React.Fragment>
         <h1>Raids belonging to {this.state.user_name}:</h1>
+        {!this.state.createIsHidden && <RaidCreate user={this.props.user}/>}
+        <button onClick={this.toggleHidden.bind(this)}>
+          Create a Raid
+        </button>
         <p>{raids}</p>
       </React.Fragment>
     )

@@ -11,6 +11,7 @@ class RaidCreate extends Component {
 
     this.state = {
       id: null,
+      user: props.user,
       raid: {
         boss_name: '',
         time_remaining: ''
@@ -28,7 +29,7 @@ class RaidCreate extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    createRaid(this.state, this.props.user)
+    createRaid(this.state, this.state.user)
       .then(handleErrors)
       .then(res => res.json())
       .then(data => this.setState({ id: data.raid.id }))

@@ -42,10 +42,17 @@ class MyRaids extends Component {
     }
     const raids = this.state.raids.map(raid => {
       if (this.state.user_id === raid.user.id) {
-        return <li key={raid.id}>
-          Raid ID: {raid.id} User: {raid.user.email} Boss: <Link to={`/raids/${raid.id}`}>{raid.boss_name}</Link> Time Remaining: {raid.time_remaining}
-        </li>
-      }})
+        return (
+          <tbody key={raid.id}>
+            <tr>
+              <td>{raid.id}</td>
+              <td><Link to={`/raids/${raid.id}`}>{raid.boss_name}</Link></td>
+              <td>{raid.time_remaining}</td>
+            </tr>
+          </tbody>
+        )
+      }
+    })
 
     return (
       <React.Fragment>
@@ -54,7 +61,16 @@ class MyRaids extends Component {
         <button onClick={this.toggleHidden.bind(this)}>
           Create a Raid
         </button>
-        <p>{raids}</p>
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>bossname</th>
+              <th>time</th>
+            </tr>
+          </thead>
+          {raids}
+        </table>
       </React.Fragment>
     )
   }

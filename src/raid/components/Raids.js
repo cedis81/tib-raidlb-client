@@ -32,15 +32,30 @@ class Raids extends Component {
       return <p>loading...</p>
     }
     const raids = this.state.raids.map(raid => (
-      <li key={raid.id}>
-        Raid ID: {raid.id} User: {raid.user.email} Boss: <Link to={`/raids/${raid.id}`}>{raid.boss_name}</Link> Time Remaining: {raid.time_remaining}
-      </li>
+      <tbody key={raid.id}>
+        <tr>
+          <td>Raid ID: {raid.id}</td>
+          <td>User: {raid.user.email}</td>
+          <td>Boss: <Link to={`/raids/${raid.id}`}>{raid.boss_name}</Link></td>
+          <td>Time Remaining: {raid.time_remaining}</td>
+        </tr>
+      </tbody>
     ))
 
     return (
       <React.Fragment>
         <h1>Raids:</h1>
-        <p>{raids}</p>
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>user</th>
+              <th>bossname</th>
+              <th>time</th>
+            </tr>
+          </thead>
+          {raids}
+        </table>
       </React.Fragment>
     )
   }

@@ -13,7 +13,6 @@ class Raids extends Component {
     }
   }
 
-
   componentDidMount() {
     fetch(`${apiUrl}/raids`)
       // fetch does not throw error. Need to use res.ok
@@ -34,17 +33,17 @@ class Raids extends Component {
     const raids = this.state.raids.map(raid => (
       <tbody key={raid.id}>
         <tr>
-          <td>Raid ID: {raid.id}</td>
-          <td>User: {raid.user.email}</td>
-          <td>Boss: <Link to={`/raids/${raid.id}`}>{raid.boss_name}</Link></td>
-          <td>Time Remaining: {raid.time_remaining}</td>
+          <td>{raid.id}</td>
+          <td>{raid.user.email}</td>
+          <td><Link to={`/raids/${raid.id}`}>{raid.boss_name}</Link></td>
+          <td>{raid.time_remaining}</td>
         </tr>
       </tbody>
     ))
 
     return (
       <React.Fragment>
-        <h1>Raids:</h1>
+        <h1>All raids submitted by trainers:</h1>
         <table>
           <thead>
             <tr>

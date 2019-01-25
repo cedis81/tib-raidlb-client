@@ -68,14 +68,24 @@ class Raid extends Component {
     }
     const { id, boss_name, time_remaining } = raid
 
+    if (raid.user.id === this.props.user.id) {
+      console.log('hi')
+      return (
+        <React.Fragment>
+          <h1>{boss_name}</h1>
+          <p>Time Remaining: {time_remaining}</p>
+          <button onClick={this.destroy}>Delete</button>
+          <button className='button-text'>
+            <Link to={`/raids/${id}/update`}>Edit</Link>
+          </button>
+        </React.Fragment>
+      )
+    }
+
     return (
       <React.Fragment>
         <h1>{boss_name}</h1>
         <p>Time Remaining: {time_remaining}</p>
-        <button onClick={this.destroy}>Delete</button>
-        <button className='button-text'>
-          <Link to={`/raids/${id}/update`}>Edit</Link>
-        </button>
       </React.Fragment>
     )
   }

@@ -69,7 +69,6 @@ class Raid extends Component {
     const { id, boss_name, time_remaining } = raid
 
     if (raid.user.id === this.props.user.id) {
-      console.log('hi')
       return (
         <React.Fragment>
           <h1>{boss_name}</h1>

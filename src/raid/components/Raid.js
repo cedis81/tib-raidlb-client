@@ -12,6 +12,7 @@ class Raid extends Component {
     this.state = {
       notFound: null,
       deleted: false,
+      flash: props.flash,
       raid: null
     }
   }
@@ -19,13 +20,17 @@ class Raid extends Component {
   componentDidMount() {
     const id = this.props.match.params.id
 
+    const {flash} = this.state
     fetch(`${apiUrl}/raids/${id}`)
       // fetch does not throw error. Need to use res.ok
       // return to intentionally throw JS error
       .then(handleErrors)
       .then(res => res.json())
       .then(data => this.setState({ raid: data.raid }))
-      .catch(() => this.setState({ notFound: true }))
+      .catch(() => {
+        this.setState({ notFound: true })
+        flash(messages.getRaidFailure, 'flash-failure')
+      })
   }
 
   destroy = event => {
@@ -38,12 +43,12 @@ class Raid extends Component {
         'Authorization':`Token token=${this.props.user.token}`
       }
     }
-
+    const {flash} = this.state
     fetch(`${apiUrl}/raids/${id}`, options)
       .then(handleErrors)
       .then(() => this.setState({ deleted: true }))
-      // .then(() => flash(messages.deleteRaidSuccess, 'flash-success'))
-      .catch(console.error)
+      .then(() => flash(messages.deleteRaidSuccess, 'flash-success'))
+      .catch(() => flash(messages.deleteRaidFailure, 'flass-failure'))
   }
 
   render () {

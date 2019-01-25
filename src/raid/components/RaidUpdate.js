@@ -13,6 +13,7 @@ class RaidUpdate extends Component {
     this.state = {
       notFound: null,
       updated: false,
+      flash: props.flash,
       raid: {
         id: '',
         boss_name: '',
@@ -30,7 +31,10 @@ class RaidUpdate extends Component {
       .then(handleErrors)
       .then(res => res.json())
       .then(data => this.setState({ raid: data.raid }))
-      .catch(() => this.setState({ notFound: true }))
+      .catch(() => {
+        this.setState({ notFound: true })
+        flash(messages.getRaidFailure, 'flash-failure')
+      })
   }
 
 
@@ -44,11 +48,13 @@ class RaidUpdate extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
+    const {flash} = this.state
     updateRaid(this.state, this.props.user)
       .then(handleErrors)
       .then(res => res.json())
       .then(data => this.setState({ updated: true }))
-      .catch(console.error)
+      .then(() => flash(messages.updateRaidSuccess, 'flash-success'))
+      .catch(() => flash(messages.updateRaidFailure, 'flash-failure'))
   }
 
   render () {

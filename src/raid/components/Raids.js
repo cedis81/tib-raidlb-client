@@ -9,18 +9,20 @@ class Raids extends Component {
     super(props)
 
     this.state = {
+      flash: props.flash,
       raids: null
     }
   }
 
   componentDidMount() {
+    const {flash} = this.state
     fetch(`${apiUrl}/raids`)
       // fetch does not throw error. Need to use res.ok
       // return to intentionally throw JS error
       .then(res => res.ok ? res : new Error())
       .then(res => res.json())
       .then(data => this.setState({ raids: data.raids }))
-      .catch(console.error)
+      .catch(() => flash(messages.getRaidFailure, 'flash-failure'))
   }
 
   render () {

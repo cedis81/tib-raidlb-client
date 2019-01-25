@@ -13,18 +13,20 @@ class MyRaids extends Component {
       createIsHidden: true,
       user_id: this.props.user.id,
       user_name: this.props.user.email,
-      raids: null
+      flash: props.flash,
+      raids: []
     }
   }
 
   componentDidMount() {
+    const {flash} = this.state
     fetch(`${apiUrl}/raids`)
       // fetch does not throw error. Need to use res.ok
       // return to intentionally throw JS error
       .then(res => res.ok ? res : new Error())
       .then(res => res.json())
       .then(data => this.setState({ raids: data.raids }))
-      .catch(console.error)
+      .catch(() => flash(messages.getRaidFailure, 'flash-failure'))
   }
 
   toggleHidden () {
@@ -34,12 +36,10 @@ class MyRaids extends Component {
   }
 
   render () {
-    // if (this.state.notFound) {
-    //   return <Redirect to='/' />
-    // } else
-    if (!this.state.raids) {
-      return <p>loading...</p>
+    if (this.state.raids.length === 0) {
+      return <p>dsfsdfsdfdsfkhsafhasoguhwihgowehgoewofjewojfowejfjweo;fjwiejfiowejof;iewojfweoj</p>
     }
+
     const raids = this.state.raids.map(raid => {
       if (this.state.user_id === raid.user.id) {
         return (
@@ -54,9 +54,17 @@ class MyRaids extends Component {
       }
     })
 
+    const myRaids = raids.filter(raid => raid)
+    if (myRaids.length === 0) {
+      return
+      <p>
+        You have no raids created. Please click <Link to='/raid-create'>here</Link> to create one and get started. Or, click <Link to='/raids'>here</Link> to view raids from other trainers!
+      </p>
+    }
+
     return (
       <React.Fragment>
-        <h1>Raids belonging to {this.state.user_name}:</h1>
+        <h1>Raids you have submitted:</h1>
         {!this.state.createIsHidden && <RaidCreate user={this.props.user}/>}
         <button onClick={this.toggleHidden.bind(this)}>
           Create a Raid

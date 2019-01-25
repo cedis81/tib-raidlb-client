@@ -33,7 +33,7 @@ class RaidUpdate extends Component {
       .then(data => this.setState({ raid: data.raid }))
       .catch(() => {
         this.setState({ notFound: true })
-        flash(messages.getRaidFailure, 'flash-failure')
+        flash(messages.getRaidFailure, 'flash-error')
       })
   }
 
@@ -54,7 +54,7 @@ class RaidUpdate extends Component {
       .then(res => res.json())
       .then(data => this.setState({ updated: true }))
       .then(() => flash(messages.updateRaidSuccess, 'flash-success'))
-      .catch(() => flash(messages.updateRaidFailure, 'flash-failure'))
+      .catch(() => flash(messages.updateRaidFailure, 'flash-error'))
   }
 
   render () {

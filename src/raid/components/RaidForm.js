@@ -13,7 +13,10 @@ const RaidForm = ({ handleChange, handleSubmit, raid }) => (
     <label>Time Remaining:</label>
     <input
       name="time_remaining"
-      placeholder="Time in seconds"
+      placeholder="Seconds"
+      type="number"
+      min="1"
+      max="500"
       value={raid.time_remaining}
       onChange={handleChange}
     />

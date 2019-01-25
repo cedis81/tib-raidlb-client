@@ -4,6 +4,7 @@ import { withRouter, Link, Redirect } from 'react-router-dom'
 import messages from '../messages'
 import { handleErrors} from '../api'
 import apiUrl from '../../apiConfig'
+import './Raid.scss'
 
 class Raid extends Component {
   constructor (props) {
@@ -29,7 +30,7 @@ class Raid extends Component {
       .then(data => this.setState({ raid: data.raid }))
       .catch(() => {
         this.setState({ notFound: true })
-        flash(messages.getRaidFailure, 'flash-failure')
+        flash(messages.getRaidFailure, 'flash-error')
       })
   }
 
@@ -72,7 +73,7 @@ class Raid extends Component {
         <h1>{boss_name}</h1>
         <p>Time Remaining: {time_remaining}</p>
         <button onClick={this.destroy}>Delete</button>
-        <button>
+        <button className='button-text'>
           <Link to={`/raids/${id}/update`}>Edit</Link>
         </button>
       </React.Fragment>

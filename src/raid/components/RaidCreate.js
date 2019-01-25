@@ -35,7 +35,13 @@ class RaidCreate extends Component {
       .then(res => res.json())
       .then(data => this.setState({ id: data.raid.id }))
       .then(() => flash(messages.createRaidSuccess, 'flash-success'))
-      .catch(() => flash(messages.createRaidFailure, 'flash-failure'))
+      .catch(() => {
+        this.setState({ raid: {
+          boss_name: '',
+          time_remaining: ''
+        }})
+        flash(messages.createRaidFailure, 'flash-error')
+      })
   }
 
   render () {

@@ -22,7 +22,7 @@ class Raids extends Component {
       .then(res => res.ok ? res : new Error())
       .then(res => res.json())
       .then(data => this.setState({ raids: data.raids }))
-      .catch(() => flash(messages.getRaidFailure, 'flash-failure'))
+      .catch(() => flash(messages.getRaidFailure, 'flash-error'))
   }
 
   render () {

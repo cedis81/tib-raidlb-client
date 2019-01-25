@@ -62,9 +62,6 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/raids' render={() => (
             <Raids flash={this.flash} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/my-raids' render={() => (
-            <MyRaids flash={this.flash} user={user} />
-          )} />
           <AuthenticatedRoute user={user} exact path='/raid-create' render={() => (
             <RaidCreate flash={this.flash} user={user} />
           )} />

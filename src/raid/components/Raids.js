@@ -10,7 +10,7 @@ class Raids extends Component {
 
     this.state = {
       flash: props.flash,
-      raids: null
+      raids: []
     }
   }
 
@@ -29,8 +29,8 @@ class Raids extends Component {
     // if (this.state.notFound) {
     //   return <Redirect to='/' />
     // } else
-    if (!this.state.raids) {
-      return <p>loading...</p>
+    if (this.state.raids.length === 0) {
+      return <p>No trainers have submitted raids yet. Please create one to get started.</p>
     }
     const raids = this.state.raids.map(raid => (
       <tbody key={raid.id}>

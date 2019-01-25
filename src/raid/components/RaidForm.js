@@ -17,7 +17,7 @@ const RaidForm = ({ handleChange, handleSubmit, raid }) => (
       value={raid.time_remaining}
       onChange={handleChange}
     />
-    <button type="submit">SUBMITTTTTTT</button>
+    <button type="submit">SUBMIT</button>
   </form>
 )
 

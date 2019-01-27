@@ -7,6 +7,8 @@ const RaidForm = ({ handleChange, handleSubmit, raid }) => (
     <input
       name="boss_name"
       placeholder="Raid boss name"
+      type="text"
+      required minLength="2"
       value={raid.boss_name}
       onChange={handleChange}
     />

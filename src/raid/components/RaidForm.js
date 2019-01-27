@@ -16,7 +16,7 @@ const RaidForm = ({ handleChange, handleSubmit, raid }) => (
     <input
       name="time_remaining"
       placeholder="Seconds"
-      type="number"
+      required type="number"
       min="1"
       max="500"
       value={raid.time_remaining}

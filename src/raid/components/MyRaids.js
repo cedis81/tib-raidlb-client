@@ -4,6 +4,7 @@ import { withRouter, Link, Redirect } from 'react-router-dom'
 import { handleErrors, myRaid } from '../api'
 import messages from '../messages'
 import apiUrl from '../../apiConfig'
+import './Raid.scss'
 import RaidCreate from './RaidCreate'
 
 class MyRaids extends Component {
@@ -45,7 +46,6 @@ class MyRaids extends Component {
       <tbody key={raid.id}>
         <tr>
           <td>{raid.id}</td>
-          <td>{raid.user.email}</td>
           <td><Link to={`/raids/${raid.id}`}>{raid.boss_name}</Link></td>
           <td>{raid.time_remaining}</td>
         </tr>

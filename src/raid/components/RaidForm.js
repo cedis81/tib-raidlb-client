@@ -1,9 +1,10 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import './Raid.scss'
 
 const RaidForm = ({ handleChange, handleSubmit, raid }) => (
   <form onSubmit={handleSubmit}>
-    <label>Raid Boss:</label>
+    <label className="form-text">Raid Boss:</label>
     <input
       name="boss_name"
       placeholder="Raid boss name"
@@ -12,8 +13,10 @@ const RaidForm = ({ handleChange, handleSubmit, raid }) => (
       value={raid.boss_name}
       onChange={handleChange}
     />
-    <label>Time Remaining:</label>
+    <br />
+    <label className="form-text">Time Remaining:</label>
     <input
+      className="form-field-text"
       name="time_remaining"
       placeholder="Seconds"
       required type="number"
@@ -22,6 +25,7 @@ const RaidForm = ({ handleChange, handleSubmit, raid }) => (
       value={raid.time_remaining}
       onChange={handleChange}
     />
+    <br />
     <button type="submit">SUBMIT</button>
   </form>
 )

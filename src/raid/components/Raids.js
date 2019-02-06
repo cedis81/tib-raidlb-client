@@ -3,6 +3,7 @@ import { withRouter, Link, Redirect } from 'react-router-dom'
 
 import messages from '../messages'
 import apiUrl from '../../apiConfig'
+import './Raid.scss'
 
 class Raids extends Component {
   constructor (props) {

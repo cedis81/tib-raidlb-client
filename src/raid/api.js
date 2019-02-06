@@ -44,18 +44,12 @@ export const showRaid = data => {
   })
 }
 
-export const changePassword = (passwords, user) => {
-  return fetch(apiUrl + '/change-password', {
-    method: 'PATCH',
+export const myRaid = user => {
+  return fetch(apiUrl + '/my-raids', {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       'Authorization':`Token token=${user.token}`
-    },
-    body: JSON.stringify({
-      passwords: {
-        old: passwords.oldPassword,
-        new: passwords.newPassword
-      }
-    })
+    }
   })
 }

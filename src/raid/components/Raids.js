@@ -26,10 +26,6 @@ class Raids extends Component {
   }
 
   render () {
-    // if (this.state.notFound) {
-    //   return <Redirect to='/' />
-    // } else
-
     if (!this.state.raids) {
       return <p>Loading...</p>
     } else if (this.state.raids.length === 0) {

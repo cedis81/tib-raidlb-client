@@ -6,6 +6,7 @@ import logo from '../tib_logo.png'
 
 const authenticatedOptions = (
   <React.Fragment>
+    <Link to="/my-raids">My Raids</Link>
     <Link to="/raids">Raids</Link>
     <Link to="/raid-create">Create Raids</Link>
     <Link to="/change-password">Change Password</Link>
